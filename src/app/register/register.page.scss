@@ -22,7 +22,7 @@ ion-content {
 
   ion-item {
     background-color: #000000;
-    border-radius: 35px;
+    border-radius: 10px;
 
     ion-label {
       color: #000000; 
@@ -32,17 +32,6 @@ ion-content {
 
     ion-input {
       color: #003366; 
-      
-    }
-
-    ion-input::part(native) {
-      background-color: #000000; 
-      border: none; 
-    }
-
-    ion-input:focus::part(native) {
-      outline: none; 
-      border: 1px solid #003366; 
     }
   }
 
@@ -59,6 +48,7 @@ ion-content {
   ion-button[fill="clear"] {
     color: #003366; 
     font-size: 0.9rem;
+    border-radius: 10px;
   }
 
   ion-img.logo {
@@ -66,5 +56,6 @@ ion-content {
     margin: 20px auto;
     width: 200px; 
     height: auto;
+    margin-top: 50px;
   }
 }

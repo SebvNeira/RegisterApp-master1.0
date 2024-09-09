@@ -8,20 +8,23 @@
 </ion-header>
 
 <ion-content>
-    <ion-item>
-      <ion-label position="floating">Usuario</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item>
-    <ion-button expand="block" >Iniciar Sesión</ion-button>
+  <ion-img src="/assets/Logo/Logo_DuocUC.svg.png" alt="Duoc UC Logo"  class="logo"></ion-img>
+  <ion-item>
+    <ion-label position="floating">Usuario</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input type="password"></ion-input>
+  </ion-item>
+  <ion-button expand="block" >Iniciar Sesión</ion-button>
+  <ion-item lines="none">
+    <ion-checkbox slot="start"></ion-checkbox>
+    <ion-label>Mantener sesión iniciada</ion-label>
+  </ion-item>
   
   <div class="link-container">
     <a routerLink="/forgot-password" class="forgot-password-link">Recuperar Contraseña</a>
   </div>
-
-  <ion-img src="/assets/Logo/Logo_DuocUC.svg.png" alt="Duoc UC Logo"  class="logo"></ion-img>
 </ion-content>
 
