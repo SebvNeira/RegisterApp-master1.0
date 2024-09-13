@@ -20,7 +20,7 @@ export class ForgotPasswordPage {
       await this.mostrarMensaje('Por favor ingresa un correo electrónico válido.');
     
     } else {
-      await this.mostrarMensaje('Se ha enviado un enlace de recuperación a tu correo.');
+      await this.mostrarMensaje('Se ha enviado un enlace de recuperación a ' + this.email);
     }
 
     this.email = '';
