@@ -17,20 +17,25 @@ export class LoginPage{
   async iniciarSesion() {
     const adminCredentials = { username: 'admin', password: 'admin123' };
     const userCredentials = { username: 'usuario', password: 'user123' };
-
+  
     if(this.username === adminCredentials.username && this.password === adminCredentials.password){
+      localStorage.setItem('user', JSON.stringify(adminCredentials)); // Guardar estado de sesión
       await this.mostrarMensaje('Bienvenido, Admin');
-
+      this.router.navigate(['/inicio']); // Redirigir a inicio
+  
     } else if (this.username === userCredentials.username && this.password === userCredentials.password){
+      localStorage.setItem('user', JSON.stringify(userCredentials)); // Guardar estado de sesión
       await this.mostrarMensaje('Bienvenido, Usuario');
-      
+      this.router.navigate(['/inicio']); // Redirigir a inicio
+  
     } else {
       await this.mostrarMensaje('Credenciales incorrectas, intente nuevamente.');
     }
-
+  
     this.username = '';
     this.password = '';
   }
+  
 
   async mostrarMensaje(mensaje: string){
     const alert = await this.alertCotroller.create({

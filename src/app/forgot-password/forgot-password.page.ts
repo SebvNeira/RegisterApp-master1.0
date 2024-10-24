@@ -8,7 +8,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./forgot-password.page.scss'],
 })
 export class ForgotPasswordPage {
-  email:string='';
+  email: string = '';
 
   constructor(private router: Router, private alertController: AlertController) { }
 
@@ -21,19 +21,20 @@ export class ForgotPasswordPage {
     
     } else {
       await this.mostrarMensaje('Se ha enviado un enlace de recuperación a ' + this.email);
+      this.router.navigate(['/login']);
     }
 
     this.email = '';
   }
 
-  validarEmail(email: string): boolean{
+  validarEmail(email: string): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   }
 
-  async mostrarMensaje(mensaje: string){
+  async mostrarMensaje(mensaje: string) {
     const alert = await this.alertController.create({
-      header: 'Recuperacion de Contraseña',
+      header: 'Recuperación de Contraseña',
       message: mensaje,
       buttons: ['OK'],
     });
@@ -42,5 +43,3 @@ export class ForgotPasswordPage {
   }
 
 }
-
-  
