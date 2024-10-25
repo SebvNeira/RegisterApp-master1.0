@@ -19,12 +19,12 @@ export class LoginPage{
     const userCredentials = { username: 'usuario', password: 'user123' };
   
     if(this.username === adminCredentials.username && this.password === adminCredentials.password){
-      localStorage.setItem('user', JSON.stringify(adminCredentials)); // Guardar estado de sesión
+      localStorage.setItem('user', this.username);
       await this.mostrarMensaje('Bienvenido, Admin');
       this.router.navigate(['/inicio']); // Redirigir a inicio
   
     } else if (this.username === userCredentials.username && this.password === userCredentials.password){
-      localStorage.setItem('user', JSON.stringify(userCredentials)); // Guardar estado de sesión
+      localStorage.setItem('user', this.username);
       await this.mostrarMensaje('Bienvenido, Usuario');
       this.router.navigate(['/inicio']); // Redirigir a inicio
   

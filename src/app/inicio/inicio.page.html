@@ -10,6 +10,18 @@
 
 <ion-content id="main-content" class="ion-padding">
   <h1>Bienvenido {{ nombreUsuario }}</h1>
+
+  <!-- Mostrar las clases del estudiante -->
+  <ion-list>
+    <ion-item *ngFor="let clase of clases" class="card">
+      <ion-label>
+        <h2>{{ clase.nombre }}</h2>
+        <p>Sección: {{ clase.seccion }}</p>
+        <p>Profesor: {{ clase.profesor }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
 
 <!-- Menú lateral -->

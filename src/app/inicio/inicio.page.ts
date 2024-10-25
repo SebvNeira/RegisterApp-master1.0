@@ -9,6 +9,18 @@ import { Router } from '@angular/router';
 })
 export class InicioPage implements OnInit {
 
+  clases: any[] = [
+
+    { nombre: 'ARQUITECTURA', seccion: 'ASY4131-012D', profesor: 'EMILIO GONZALO SOTO ROJAS' },
+    { nombre: 'CALIDAD DE SOFTWARE', seccion: 'CSY4111-011D', profesor: 'PATRICIO ANDRES SOTO SERDIO' },
+    { nombre: 'ESTADÍSTICA DESCRIPTIVA', seccion: 'MAT4140-012D', profesor: 'KATHERINE DEL CARMEN ENCINA ALARCON' },
+    { nombre: 'INGLÉS INTERMEDIO', seccion: 'INI5111-019D', profesor: 'GUSTAVO ALEJANDRO ARIAS BECERRA' },
+    { nombre: 'PROCESO DE PORTAFOLIO FINAL', seccion: 'PY41447-005D', profesor: 'PATRICIO ANDRES SOTO SERDIO' },
+    { nombre: 'PROGRAMACIÓN DE APLICACIONES MÓVILES', seccion: 'PGY4121-012D', profesor: 'CARLOS FERNANDO MARTINEZ SANCHEZ' },
+    { nombre: 'ÉTICA PARA EL TRABAJO', seccion: 'EAY4450-300D', profesor: 'ESTEBAN SALVATIERRA ROMAN' },
+
+  ];
+
   nombreUsuario: string = '';
 
   constructor(private authService: AuthService, private router: Router) { }
