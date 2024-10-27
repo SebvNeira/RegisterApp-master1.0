@@ -3,31 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-    <title>Clima de hoy</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clima de Hoy - Duoc UC</title>
+    <link rel="stylesheet" href="clima.css">
 </head>
-<body>    
-    
-        <div id="caja1">
-            <h1 id="temperatura-valor"></h1>
-            <h1 id="temperatura-descripcion"></h1>
+<body>
+    <!-- Botón de menú para abrir el menú lateral -->
+    <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()">☰</button>
+
+    <!-- Menú lateral desplegable -->
+    <aside class="sidebar" id="sidebar">
+        <button class="close-btn" onclick="toggleMenu()">✖</button>
+        <ul>
+            <li><a href="./inicio/inicio.page">Inicio</a></li>
+            <li><a href="#">Configuración</a></li>
+            <li><a href="#">Ayuda</a></li>
+        </ul>
+    </aside>
+
+    <!-- Contenedor principal -->
+    <main class="main-content">
+        <!-- Encabezado -->
+        <header class="header">
+            <h1>Clima de Hoy</h1>
+        </header>
+
+        <!-- Contenido de clima -->
+        <div class="contenedor" id="contenedor">
+            <div id="caja1" class="weather-box">
+                <h2>Temperatura</h2>
+                <h1 id="temperatura-valor"></h1>
+                <h3 id="temperatura-descripcion"></h3>
+            </div>
+            <div id="caja2" class="weather-box">
+                <h2>Ubicación</h2>
+                <h2 id="ubicacion"></h2>
+                <img id="icono-animado" src="" alt="Icono del clima" height="128" width="128">
+            </div>
+            <div id="caja3" class="weather-box">
+                <h2>Velocidad del Viento</h2>
+                <h1 id="viento-velocidad"></h1>
+            </div> 
         </div>
-    <div id="caja2">
-        <h2 id="ubicacion"></h2>
-        <img id="icono-animado" src="" alt="" height="128" width="128">
-    </div>
-    <div id="caja3">
-        <h3>Veloc. del Viento</h3>
-        <h1 id="viento-velocidad"></h1>
-    </div> 
-</div>
-<button onclick="goBack()">Volver</button>
-  <script>
-    function goBack() {
-      window.history.back();
-    }
-  </script>
+    </main>
+
     <script src="app.js"></script>
+    <script>
+        function toggleMenu() {
+            const sidebar = document.getElementById("sidebar");
+            const menuToggle = document.getElementById("menuToggle");
+            sidebar.classList.toggle("active");
+            menuToggle.classList.toggle("hidden"); // Oculta el botón cuando el menú está abierto
+        }
+    </script>
 </body>
 </html>
