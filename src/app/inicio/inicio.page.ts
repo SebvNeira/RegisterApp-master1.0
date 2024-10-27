@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-inicio',
@@ -23,7 +24,7 @@ export class InicioPage implements OnInit {
 
   nombreUsuario: string = '';
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router,) { }
 
   ngOnInit() {
     this.nombreUsuario = this.authService.getUsername(); // Obtener el nombre de usuario
@@ -32,6 +33,9 @@ export class InicioPage implements OnInit {
   cerrarSesion() {
     this.authService.logout(); // Llamada al método de cerrar sesión
     this.router.navigate(['/login']); // Redirigir al login
+  }
+  openWeatherApi() {
+    window.location.href = 'assets/app_clima/clima.html';
   }
 }
 
