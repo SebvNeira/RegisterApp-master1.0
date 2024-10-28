@@ -23,22 +23,26 @@ export class RegisterPage  {
 
   async registrarUsuario() {
     if(this.username && this.email && this.password){
-      const user = {
-        username: this.username,
-        email: this.email,
-        password: this.password,
-      };
+      if (this.password.length < 3 || this.password.length > 12) {
+        await this.mostrarMensaje('La contraseña debe tener entre 3 y 12 caracteres.');
+        return;
+      }
+        const user = {
+          username: this.username,
+          email: this.email,
+          password: this.password,
+        };
 
-      this.authService.saveUser(user); 
-      await this.mostrarMensaje('Registro exitoso. Ahora puedes iniciar sesión.');
-      this.router.navigate(['/home']);
+        this.authService.saveUser(user); 
+        await this.mostrarMensaje('Registro exitoso. Ahora puedes iniciar sesión.');
+        this.router.navigate(['/home']);
 
-      this.username = '';
-      this.email = '';
-      this.password = '';
-    } else {
-      await this.mostrarMensaje('Por favor completa todos los campos.');
-    }
+        this.username = '';
+        this.email = '';
+        this.password = '';
+      } else {
+        await this.mostrarMensaje('Por favor completa todos los campos.');
+      }
   }
 
   async verificarEmail() {
