@@ -27,12 +27,12 @@ export class InicioPage implements OnInit {
   constructor(private authService: AuthService, private router: Router,) { }
 
   ngOnInit() {
-    this.nombreUsuario = this.authService.getUsername(); // Obtener el nombre de usuario
+    this.nombreUsuario = this.authService.getUsername(); 
   }
 
   cerrarSesion() {
-    this.authService.logout(); // Llamada al método de cerrar sesión
-    this.router.navigate(['/login']); // Redirigir al login
+    this.authService.logout();
+    this.router.navigate(['/login']); 
   }
   openWeatherApi() {
     window.location.href = 'assets/app_clima/clima.html';

@@ -90,3 +90,7 @@ window.addEventListener('load', ()=> {
           
     }
 })
+
+function irInicio(){
+  window.location.href = 'inicio.page.html';
+}
