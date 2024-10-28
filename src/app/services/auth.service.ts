@@ -4,25 +4,29 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AuthService {
-  private username: string | null = null;
+  private storageKey = 'user';
 
   constructor() {}
 
-  setUsername(username: string) {
-    this.username = username;
-    localStorage.setItem('user', username); // Puedes almacenarlo en localStorage
+  // Guardar usuario en localStorage
+  saveUser(user: { username: string; email: string; password: string }) {
+    localStorage.setItem(this.storageKey, JSON.stringify(user));
   }
 
+  // Obtener solo el nombre de usuario
   getUsername(): string {
-    return this.username || localStorage.getItem('user') || '';
+    const storedUser = JSON.parse(localStorage.getItem(this.storageKey) || '{}');
+    return storedUser.username || '';
   }
 
-  isAuthenticated(): boolean {
-    return !!localStorage.getItem('user'); // Verifica si el usuario ha iniciado sesión
-  }
-
+  // Cerrar sesión eliminando usuario de localStorage
   logout() {
-    localStorage.removeItem('user'); // Eliminar datos de sesión
-    this.username = null;
+    localStorage.removeItem(this.storageKey);
+  }
+
+  // Verificar credenciales al iniciar sesión
+  validateCredentials(username: string, password: string): boolean {
+    const storedUser = JSON.parse(localStorage.getItem(this.storageKey) || '{}');
+    return storedUser.username === username && storedUser.password === password;
   }
 }

@@ -1,6 +1,7 @@
 import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,33 +13,25 @@ export class LoginPage{
   username: string='';
   password: string='';
 
-  constructor(private router: Router, private alertCotroller: AlertController) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private alertController: AlertController
+  ) {}
 
   async iniciarSesion() {
-    const adminCredentials = { username: 'admin', password: 'admin123' };
-    const userCredentials = { username: 'usuario', password: 'user123' };
-  
-    if(this.username === adminCredentials.username && this.password === adminCredentials.password){
-      localStorage.setItem('user', this.username);
-      await this.mostrarMensaje('Bienvenido, Admin');
-      this.router.navigate(['/inicio']); // Redirigir a inicio
-  
-    } else if (this.username === userCredentials.username && this.password === userCredentials.password){
-      localStorage.setItem('user', this.username);
-      await this.mostrarMensaje('Bienvenido, Usuario');
-      this.router.navigate(['/inicio']); // Redirigir a inicio
-  
+    if (this.authService.validateCredentials(this.username, this.password)) {
+      await this.mostrarMensaje('Inicio de sesión exitoso. Bienvenido!');
+      this.router.navigate(['/inicio']);
     } else {
       await this.mostrarMensaje('Credenciales incorrectas, intente nuevamente.');
     }
-  
     this.username = '';
     this.password = '';
   }
-  
 
-  async mostrarMensaje(mensaje: string){
-    const alert = await this.alertCotroller.create({
+  async mostrarMensaje(mensaje: string) {
+    const alert = await this.alertController.create({
       header: 'Inicio de Sesión',
       message: mensaje,
       buttons: ['OK'],
@@ -46,5 +39,4 @@ export class LoginPage{
 
     await alert.present();
   }
-
 }
