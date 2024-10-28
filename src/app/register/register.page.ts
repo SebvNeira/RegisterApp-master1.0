@@ -41,6 +41,17 @@ export class RegisterPage  {
     }
   }
 
+  async verificarEmail() {
+    if (!this.validarEmail(this.email)) {
+      await this.mostrarMensaje('Por favor ingresa un correo electrónico válido.');
+    }
+  }
+
+  validarEmail(email: string): boolean {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  }
+
   async mostrarMensaje(mensaje: string) {
     const alert = await this.alertController.create({
       header: 'Registro',
@@ -50,5 +61,7 @@ export class RegisterPage  {
 
     await alert.present();
   }
+
+  
 
 }

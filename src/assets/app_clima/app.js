@@ -92,5 +92,5 @@ window.addEventListener('load', ()=> {
 })
 
 function irInicio(){
-  window.location.href = 'inicio.page.html';
+  window.location.href = 'app/inicio/inicio.page.html';
 }

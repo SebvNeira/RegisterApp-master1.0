@@ -15,7 +15,8 @@
     <aside class="sidebar" id="sidebar">
         <button class="close-btn" onclick="toggleMenu()">✖</button>
         <ul>
-            <li><a href="#" onclick="irInicio()">Inicio</a></li>
+            
+            <button onclick="goback()">Volver</button>
         </ul>
     </aside>
 
@@ -47,6 +48,9 @@
 
     <script src="app.js"></script>
     <script>
+        function goback(){
+            window.history.back();
+        }
         function toggleMenu() {
             const sidebar = document.getElementById("sidebar");
             const menuToggle = document.getElementById("menuToggle");
