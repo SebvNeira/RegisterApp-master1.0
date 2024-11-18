@@ -23,6 +23,7 @@ export class InicioPage implements OnInit {
   ];
 
   nombreUsuario: string = '';
+  result: string = ''
 
   constructor(private authService: AuthService, private router: Router,) { }
 
@@ -37,5 +38,14 @@ export class InicioPage implements OnInit {
   openWeatherApi() {
     window.location.href = 'assets/app_clima/clima.html';
   }
+  /*
+  async scan(): Promise<void> {
+    const result = await CapacitorBarcodeScanner.scanBarcode({
+      hint: CapacitorBarcodeScannerTypeHint.ALL
+    });
+    this.result = result.ScanResult;
+  }*/
+  
+  
 }
 
