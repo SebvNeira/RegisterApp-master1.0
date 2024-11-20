@@ -1,29 +1,3 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <!-- Botón para abrir el menú lateral -->
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Inicio</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content id="main-content" class="ion-padding">
-  <h1>Bienvenido {{ nombreUsuario }}</h1>
-
-  <!-- Mostrar las clases del estudiante -->
-  <ion-list>
-    <ion-item *ngFor="let clase of clases" class="card">
-      <ion-label>
-        <h2>{{ clase.nombre }}</h2>
-        <p>Sección: {{ clase.seccion }}</p>
-        <p>Profesor: {{ clase.profesor }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
-
-</ion-content>
-
 <!-- Menú lateral -->
 <ion-menu side="start" menuId="first" contentId="main-content">
   <ion-header>
@@ -31,37 +5,61 @@
       <ion-title>Menú</ion-title>
     </ion-toolbar>
   </ion-header>
-  
+
   <ion-content>
     <ion-list>
       <!-- Botón de cerrar sesión -->
       <ion-item button (click)="cerrarSesion()">
         <ion-label>Cerrar Sesión</ion-label>
       </ion-item>
+      <!-- Agregar opciones adicionales al menú -->
+      <ion-item button (click)="openWeatherApi()">
+        <ion-label>Clima de Hoy</ion-label>
+      </ion-item>
     </ion-list>
-  </ion-content>
-  <ion-content>
-    <ion-button expand="full" (click)="openWeatherApi()">Clima de Hoy</ion-button>
   </ion-content>
 </ion-menu>
 
-<!--
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Barcode Scanner</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Bienvenido, {{ nombreUsuario }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item *ngIf="result">
-      {{result}}
-    </ion-item>
-  </ion-list>
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button (click)="scan()">
-      <ion-icon name="scan"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <div class="list-container">
+    <ion-card *ngFor="let clase of clases" class="card">
+      <ion-card-header (click)="toggleClase(clase)">
+        <ion-card-title>{{ clase.nombre }}</ion-card-title>
+        <ion-card-subtitle>{{ clase.seccion }} - {{ clase.sala }} - {{ clase.profesor }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content *ngIf="clase.mostrarAsistencia" class="card-content">
+        <!-- Mostrar asistencias registradas -->
+        <div *ngIf="clase.asistencias?.length > 0; else noAsistencia">
+          <div *ngFor="let asistencia of clase.asistencias">
+            <h3>Detalles de asistencia</h3>
+            <p><strong>Asignatura:</strong> {{ asistencia.asignatura }}</p>
+            <p><strong>Sección:</strong> {{ asistencia.seccion }}</p>
+            <p><strong>Sala:</strong> {{ asistencia.sala }}</p>
+            <p><strong>Fecha:</strong> {{ asistencia.fecha }}</p>
+          </div>
+        </div>
+
+        <ng-template #noAsistencia>
+          <div class="no-asistencia">
+            <p>No hay registros de asistencia para esta clase.</p>
+          </div>
+        </ng-template>
+      </ion-card-content>
+
+      <ion-button class="scan-button" expand="full" (click)="scan(clase)">
+        <ion-icon name="scan" slot="start"></ion-icon>
+        Escanear
+      </ion-button>
+    </ion-card>
+  </div>
 </ion-content>
- -->

@@ -2,27 +2,101 @@ ion-content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
+  background-color: #e9ecef; /* Fondo claro con un tono profesional */
+}
+
+ion-content h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333; /* Un tono oscuro profesional */
 }
 
 ion-list {
   width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espaciado entre tarjetas */
 }
 
 .card {
-  background-color: #fff;
-  border-radius: 10px;
+  background-color: #ffffff;
+  border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 15px 10px;
   padding: 20px;
-  width: 90%;
-  max-width: 400px;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.card h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.card p {
-  color: #666;
+ion-card-title {
+  font-size: 1.25rem;
+  color: #222;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+ion-card-subtitle {
+  font-size: 1rem;
+  color: #555;
+}
+
+.card-content {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.scan-button {
+  --background: #007bff; /* Azul estándar */
+  --background-hover: #005bb5; /* Azul más oscuro */
+  color: #ffffff;
+  font-weight: normal;
+  font-size: 0.85rem;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.scan-button:hover {
+  --background: var(--background-hover);
+}
+
+.no-asistencia {
+  text-align: center;
+  color: #888; /* Un tono gris claro */
+  font-style: italic;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  ion-content {
+    padding: 15px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  ion-card-title {
+    font-size: 1.15rem;
+  }
+
+  ion-card-subtitle {
+    font-size: 0.9rem;
+  }
 }
