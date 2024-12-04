@@ -27,22 +27,28 @@ export class RegisterPage  {
         await this.mostrarMensaje('La contraseña debe tener entre 3 y 12 caracteres.');
         return;
       }
-        const user = {
-          username: this.username,
-          email: this.email,
-          password: this.password,
-        };
 
-        this.authService.saveUser(user); 
-        await this.mostrarMensaje('Registro exitoso. Ahora puedes iniciar sesión.');
-        this.router.navigate(['/home']);
-
-        this.username = '';
-        this.email = '';
-        this.password = '';
-      } else {
-        await this.mostrarMensaje('Por favor completa todos los campos.');
+      if (!this.validarEmail(this.email)){
+        await this.mostrarMensaje('Por favor ingresa un correo electronico valido.')
       }
+      const user = {
+        username: this.username,
+        email: this.email,
+        password: this.password,
+      };
+
+      this.authService.saveUser(user); 
+
+      const userType = this.email.endsWith('@profesor.cl') ? 'docente' : 'estudiante';
+      await this.mostrarMensaje(`Registro exitoso como ${userType}. Ahora puedes iniciar sesión.`);
+      this.router.navigate(['/home']);
+
+      this.username = '';
+      this.email = '';
+      this.password = '';
+    } else {
+      await this.mostrarMensaje('Por favor completa todos los campos.');
+    }
   }
 
   async verificarEmail() {

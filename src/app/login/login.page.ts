@@ -21,14 +21,22 @@ export class LoginPage{
 
   async iniciarSesion() {
     if (this.authService.validateCredentials(this.username, this.password)) {
-      await this.mostrarMensaje('Inicio de sesión exitoso. Bienvenido!');
-      this.router.navigate(['/inicio']);
+      const userType = this.authService.getUserType();
+  
+      if (userType === 'docente') {
+        await this.mostrarMensaje('Inicio de sesión exitoso como Docente.');
+        this.router.navigate(['/inicio-docente']); 
+      } else {
+        await this.mostrarMensaje('Inicio de sesión exitoso como Estudiante.');
+        this.router.navigate(['/inicio']); 
+      }
     } else {
       await this.mostrarMensaje('Credenciales incorrectas, intente nuevamente.');
     }
     this.username = '';
     this.password = '';
   }
+  
 
   async mostrarMensaje(mensaje: string) {
     const alert = await this.alertController.create({

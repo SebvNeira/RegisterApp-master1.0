@@ -6,12 +6,19 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   private storageKey = 'user';
   private isAuthenticatedkey = 'isAuthenticated';
+  private userTypeKey = 'userType';
 
   constructor() {}
 
   saveUser(user: { username: string; email: string; password: string }) {
+    const userType = user.email.endsWith('@profesor.cl') ? 'docente' : 'estudiante';
     localStorage.setItem(this.storageKey, JSON.stringify(user));
     localStorage.setItem(this.isAuthenticatedkey, 'true');
+    localStorage.setItem(this.userTypeKey, userType);
+  }
+
+  getUserType(): string {
+    return localStorage.getItem(this.userTypeKey) || 'estudiante';
   }
 
   getUsername(): string {
@@ -21,6 +28,7 @@ export class AuthService {
 
   logout() {
     localStorage.setItem(this.isAuthenticatedkey, 'false');
+    
   }
 
   validateCredentials(username: string, password: string): boolean {

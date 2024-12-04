@@ -1,0 +1,57 @@
+<!-- Menú lateral -->
+<ion-menu side="start" menuId="first" contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menú</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item button (click)="cerrarSesion()">
+        <ion-label>Cerrar Sesión</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-router-outlet id="main-content"></ion-router-outlet>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Generar Código QR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Contenido principal -->
+<ion-content id="main-content" class="ion-padding">
+  <div class="header-container">
+    <!-- Selección de la clase -->
+    <ion-item>
+      <ion-label>Selecciona una Clase</ion-label>
+      <ion-select [(ngModel)]="selectedClass" (ionChange)="updateQRData()">
+        <ion-select-option *ngFor="let clase of clases" [value]="clase">
+          {{clase.nombre}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Mostrar detalles de la clase seleccionada -->
+    <div *ngIf="selectedClass">
+      <p><strong>Sección:</strong> {{ selectedClass.seccion }}</p>
+      <p><strong>Sala:</strong> {{ selectedClass.sala }}</p>
+      <p><strong>Profesor:</strong> {{ selectedClass.profesor }}</p>
+    </div>
+
+    <!-- Botón para generar el QR -->
+    <ion-button class="generate-btn" expand="block" (click)="generateQR()">Generar QR</ion-button>
+  </div>
+
+  <!-- Mostrar el QR generado -->
+  <div *ngIf="generatedQR" class="qr-container">
+    <h3>Tu Código QR</h3>
+    <img [src]="generatedQR" alt="Código QR generado" />
+  </div>
+</ion-content>

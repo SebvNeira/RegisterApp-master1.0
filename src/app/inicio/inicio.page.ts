@@ -26,7 +26,7 @@ export class InicioPage implements OnInit {
   result: string = ''
   asistenciaData: any[] = [];
 
-  constructor(private authService: AuthService, private router: Router,) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.nombreUsuario = this.authService.getUsername(); 
@@ -77,7 +77,7 @@ export class InicioPage implements OnInit {
           const [asignatura, seccion, sala] = qrData;
   
           // Validar que los datos del QR coincidan con la clase seleccionada
-          if (asignatura === clase.nombre && seccion === clase.seccion) {
+          if (asignatura === clase.nombre && seccion === clase.seccion && sala === clase.sala) {
             const fechaActual = new Date().toLocaleString('es-CL', {
               day: '2-digit',
               month: '2-digit',
